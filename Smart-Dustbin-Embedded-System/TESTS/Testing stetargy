@@ -1,0 +1,14 @@
+TEST STETARGY:---------
+
+
+| ID   | Condition       | Input    | Expected Output    | Result |
+| ---- | --------------- | -------- | ------------------ | ------ |
+| TC01 | Startup         | Power ON | Lid closed         | PASS   |
+| TC02 | No object       | 100 cm   | Lid remains closed | PASS   |
+| TC03 | Object detected | 15 cm    | Lid opens          | PASS   |
+| TC04 | Lid timeout     | 3 sec    | Lid closes         | PASS   |
+| TC05 | Empty bin       | 28 cm    | EMPTY              | PASS   |
+| TC06 | Medium          | 15 cm    | MEDIUM             | PASS   |
+| TC07 | High            | 7 cm     | HIGH               | PASS   |
+| TC08 | Full            | 2 cm     | FULL + buzzer      | PASS   |
+| TC09 | Invalid sensor  | No echo  | Safe handling      | PASS   |
