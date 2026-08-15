@@ -21,6 +21,27 @@ Connections:-
 | Servo             | GND     | GND     |
 
 
+Think of Arduino as a brain and is basicallt doing this:-
+
+              ARDUINO
+                 │
+     ┌───────────┼───────────┐
+     │           │           │
+   INPUT      PROCESSING    OUTPUT
+     │           │           │
+     ▼           ▼           ▼
+ Sensors      Logic        Actuators
+     │           │           │
+     │           │           ├── Servo
+     │           │           ├── LEDs
+     │           │           └── Buzzer
+     │           │
+     ├── Proximity
+     └── Level
+
+
+
+
 
 ULTRA SENSOR:-Two HC-SR04 Sensors are used 
 1.As a proximity sensor (senses the person at a a distance)

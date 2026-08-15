@@ -49,11 +49,11 @@ bool lidOpen = false;
 
 enum BinStatus
 {
-  EMPTY,
-  LOW,
-  MEDIUM,
-  HIGH,
-  FULL
+  BIN_EMPTY,
+  BIN_LOW,
+  BIN_MEDIUM,
+  BIN_HIGH,
+  BIN_FULL
 };
 
 
@@ -113,7 +113,7 @@ void loop()
   // 1. PERSON / HAND DETECTION
   // -------------------------------------------
 
-  float proximityDistance =
+  float proximityDistance =10,
       readDistanceCM(PROX_TRIG_PIN, PROX_ECHO_PIN);
 
   if (proximityDistance > 0 &&
@@ -129,7 +129,13 @@ void loop()
 
       closeLid();
     }
+   
   }
+   else 
+   {
+         Serial.println("No movement");
+         delay(1000);
+   }
 
 
   // -------------------------------------------
@@ -140,7 +146,7 @@ void loop()
   {
     lastSensorRead = millis();
 
-    float garbageDistance =
+    float garbageDistance =20,
         readDistanceCM(LEVEL_TRIG_PIN, LEVEL_ECHO_PIN);
 
     if (garbageDistance > 0 &&
@@ -175,16 +181,16 @@ void loop()
 
 float readDistanceCM(uint8_t trigPin, uint8_t echoPin)
 {
-  digitalWrite(trigPin, LOW);
+  digitalWrite(trigPin, BIN_LOW);
   delayMicroseconds(2);
 
-  digitalWrite(trigPin, HIGH);
+  digitalWrite(trigPin, BIN_HIGH);
   delayMicroseconds(10);
 
-  digitalWrite(trigPin, LOW);
+  digitalWrite(trigPin, BIN_LOW);
 
   unsigned long duration =
-      pulseIn(echoPin, HIGH, 30000);
+      pulseIn(echoPin, BIN_HIGH, 30000);
 
   if (duration == 0)
   {
@@ -246,25 +252,25 @@ BinStatus getBinStatus(int fillPercentage)
 {
   if (fillPercentage < 25)
   {
-    return EMPTY;
+    return BIN_EMPTY;
   }
 
   if (fillPercentage < 50)
   {
-    return LOW;
+    return BIN_LOW;
   }
 
   if (fillPercentage < 75)
   {
-    return MEDIUM;
+    return BIN_MEDIUM;
   }
 
   if (fillPercentage < 90)
   {
-    return HIGH;
+    return BIN_HIGH;
   }
 
-  return FULL;
+  return BIN_FULL;
 }
 
 
@@ -280,20 +286,26 @@ void updateIndicators(BinStatus status)
 
   switch (status)
   {
-    case EMPTY:
-    case LOW:
+    case BIN_EMPTY:
+    case BIN_LOW:
       digitalWrite(GREEN_LED, HIGH);
+      
+
       break;
 
-    case MEDIUM:
+    case BIN_MEDIUM:
       digitalWrite(YELLOW_LED, HIGH);
+      
+
       break;
 
-    case HIGH:
+    case BIN_HIGH:
       digitalWrite(YELLOW_LED, HIGH);
+      
+
       break;
 
-    case FULL:
+    case BIN_FULL:
       digitalWrite(RED_LED, HIGH);
 
       tone(BUZZER_PIN, 2000);
@@ -311,19 +323,19 @@ const char* getStatusName(BinStatus status)
 {
   switch (status)
   {
-    case EMPTY:
+    case BIN_EMPTY:
       return "EMPTY";
 
-    case LOW:
+    case BIN_LOW:
       return "LOW";
 
-    case MEDIUM:
+    case BIN_MEDIUM:
       return "MEDIUM";
 
-    case HIGH:
+    case BIN_HIGH:
       return "HIGH";
 
-    case FULL:
+    case BIN_FULL:
       return "FULL";
   }
 
