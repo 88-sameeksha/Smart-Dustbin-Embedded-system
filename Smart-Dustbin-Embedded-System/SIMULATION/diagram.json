@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "author": "Sameeksha Sharma",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -104.1, "left": 303.1, "attrs": {} },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": 50,
+      "left": 500,
+      "rotate": 90,
+      "attrs": { "hornColor": "blue" }
+    },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic2", "top": 150, "left": 300, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -138,
+      "left": 109.4,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -138,
+      "left": 61.4,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -128.4,
+      "left": 13.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -180,
+      "left": -199.8,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "ultrasonic1:GND", "uno:GND.2", "black", [ "v-134.4", "h219.6" ] ],
+    [ "ultrasonic1:TRIG", "uno:2", "green", [ "v-470.4", "h306.8", "v134.4" ] ],
+    [ "ultrasonic1:ECHO", "uno:3", "green", [ "v-316.8", "h296.8" ] ],
+    [ "servo1:PWM", "uno:6", "green", [ "h518.4", "v0.2" ] ],
+    [ "servo1:V+", "uno:5V", "green", [ "h470.4", "v192.1" ] ],
+    [ "servo1:GND", "uno:GND.2", "black", [ "h489.6", "v201.6" ] ],
+    [ "ultrasonic2:VCC", "uno:5V", "red", [ "v-124.8", "h-156.8" ] ],
+    [ "ultrasonic2:GND", "uno:GND.2", "black", [ "v-28.8", "h-10.8" ] ],
+    [ "ultrasonic2:TRIG", "uno:4", "blue", [ "v-326.4", "h-106" ] ],
+    [ "ultrasonic2:ECHO", "uno:5", "violet", [ "v-326.4", "h-125.6" ] ],
+    [ "led1:A", "uno:7", "green", [ "v105.6", "h57.6" ] ],
+    [ "led2:A", "uno:8", "gold", [ "v105.6", "h86.4" ] ],
+    [ "led3:A", "uno:9", "red", [ "v96", "h124.8" ] ],
+    [ "bz1:2", "uno:10", "cyan", [ "v105.6", "h316.4" ] ],
+    [ "bz1:1", "uno:GND.1", "green", [ "v105.6", "h288" ] ],
+    [ "led3:C", "uno:GND.2", "green", [ "v86.4", "h-47.6" ] ],
+    [ "led2:C", "uno:GND.2", "green", [ "v288", "h96.4" ] ],
+    [ "led1:C", "uno:GND.2", "green", [ "v288", "h48.4" ] ]
+  ],
+  "dependencies": {}
+}
